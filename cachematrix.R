@@ -1,6 +1,6 @@
 ## Caching the Inverse of a Matrix
 ## We are using the assignment operator "<<-" to create an R object 
-## instead of calling everything from global envi memory.
+## instead of recalc everything again
 ## cacheSolve returns Inverse if it is cached (if not, it still calculates and returns)
 
 ## The function below creates a special "matrix" object that can cache its inverse.
