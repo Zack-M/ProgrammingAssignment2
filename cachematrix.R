@@ -5,6 +5,7 @@
 
 ## The function below creates a special "matrix" object that can cache its inverse.
 # Function returns a message if the Determinant of the matrix ==0
+# Line No.10 is not required if we assume that the matrix given will be definitely invertible
 makeCacheMatrix <- function(x = matrix()) {
   if (det(x) == 0){print("The matrix is not invertible.")}
   else {
@@ -36,4 +37,4 @@ cacheSolve <- function(x, ...) {
   x$setinverse(inv)
   inv
 }
-# End of Code
+## End of Code
