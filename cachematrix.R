@@ -1,15 +1,38 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Caching the Inverse of a Matrix
+## We are using the assignment operator "<<-" to create an R object 
+## instead of calling everything from global envi memory.
+## cacheSolve returns Inverse if it is cached (if not, it still calculates and returns)
 
-## Write a short comment describing this function
-
+## The function below creates a special "matrix" object that can cache its inverse.
+# Function returns a message if the Determinant of the matrix ==0
 makeCacheMatrix <- function(x = matrix()) {
-
+  if (det(x) == 0){print("The matrix is not invertible.")}
+  else {
+  inv <- NULL
+  set <- function(y) {
+    x <<- y
+    inv <<- NULL
+  }
+  get <- function() x
+  setinverse <- function(inverse) inv <<- inverse
+  getinverse <- function() inv
+  list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)
+  }
 }
 
 
-## Write a short comment describing this function
+
+## The function below computes the inverse of the special "matrix" returned by makeCacheMatrix above.
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  ## Return a matrix that is the inverse of 'x'
+  inv <- x$getinverse()
+  if(!is.null(inv)) {
+    message("Getting cached data.")
+    return(inv)
+  }
+  data <- x$get()
+  inv <- solve(data)
+  x$setinverse(inv)
+  inv
 }
